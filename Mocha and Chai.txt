@@ -1,0 +1,33 @@
+export function compareCards(card1, card2) {
+    if (card1.value > card2.value) {
+        return "Player 1 wins";
+    } else if (card1.value < card2.value) {
+        return "Player 2 wins";
+    } else {
+        return "Tie";
+    }
+}
+
+import { expect } from "chai";
+import { compareCards } from "../game.js"; // Adjust path based on your project structure
+
+describe("compareCards Function", function() {
+    it("should return 'Player 1 wins' when Player 1's card is higher", function() {
+        const result = compareCards({ value: 10 }, { value: 5 });
+        expect(result).to.equal("Player 1 wins");
+    });
+
+    it("should return 'Player 2 wins' when Player 2's card is higher", function() {
+        const result = compareCards({ value: 3 }, { value: 8 });
+        expect(result).to.equal("Player 2 wins");
+    });
+
+    it("should return 'Tie' when both players have the same card value", function() {
+        const result = compareCards({ value: 7 }, { value: 7 });
+        expect(result).to.equal("Tie");
+    });
+});
+
+npm install chai@4.3.10 mocha@10.2.0 --save-dev
+
+npx mocha
